@@ -46,6 +46,30 @@ classDiagram
         +generate_schedule(tasks, available_mins) Tuple[List[Task], List[Task], List[str]]
     }
 
-    Owner "1" --> "*" Pet : owns[cite: 1]
-    Pet "1" --> "*" Task : has[cite: 1]
-    Scheduler ..> Task : processes[cite: 1]
+    class PetCareRAG {
+        +retrieve(question, limit) List[RetrievedSource]
+        +answer(question) RAGAnswer
+        -_documents
+        -api_key
+        -model
+    }
+
+    class RetrievedSource {
+        +str source_id
+        +str title
+        +str content
+        +float score
+    }
+
+    class RAGAnswer {
+        +str text
+        +tuple[RetrievedSource] sources
+        +bool guarded
+    }
+
+    Owner "1" --> "*" Pet : owns
+    Pet "1" --> "*" Task : has
+    Scheduler ..> Task : schedules
+    PetCareRAG ..> RetrievedSource : ranks care-guide passages
+    PetCareRAG ..> RAGAnswer : generates grounded answer
+    RAGAnswer "1" --> "*" RetrievedSource : cites

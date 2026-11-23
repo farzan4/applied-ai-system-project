@@ -1,0 +1,37 @@
+[
+  {
+    "id": "preventive-care",
+    "title": "Preventive care and checkups",
+    "content": "Routine veterinary checkups help tailor preventive care to a pet's species, age, health, and lifestyle. Ask a veterinarian which examinations and preventive steps are appropriate for your individual pet. Keep a note of new symptoms and changes in appetite, activity, or behavior to discuss at the visit."
+  },
+  {
+    "id": "feeding-and-water",
+    "title": "Feeding and fresh water",
+    "content": "Keep fresh water available and follow a feeding routine appropriate for the individual pet. Food needs can vary with species, age, health, and activity. Discuss diet changes, persistent appetite changes, or concerns about weight with a veterinarian; avoid making major diet changes based only on general online guidance."
+  },
+  {
+    "id": "exercise",
+    "title": "Exercise and activity",
+    "content": "Choose activity that suits the pet's species, age, fitness, and health. Introduce changes gradually and provide access to water and rest. Stop an activity if the pet appears distressed or uncomfortable. Ask a veterinarian for guidance when a pet has a health condition, reduced mobility, or a new exercise-related concern."
+  },
+  {
+    "id": "grooming",
+    "title": "Gentle grooming",
+    "content": "Use calm, short grooming sessions suited to the pet and its coat. Introduce tools gradually and pause if the pet is stressed. Check for changes such as irritation, unusual hair loss, or painful areas, and ask a veterinarian about concerning skin, ear, or coat changes. Do not use products unless they are labeled as appropriate for that animal."
+  },
+  {
+    "id": "medication-safety",
+    "title": "Medication safety",
+    "content": "Give medication only as directed by the prescribing veterinarian and follow the label. Do not change a dose, give a human medication, or double a dose after a missed dose without veterinary advice. Contact the prescribing veterinarian or a veterinary emergency service if a dose was missed, an extra dose may have been given, or there is a concern about a reaction."
+  },
+  {
+    "id": "enrichment",
+    "title": "Enrichment and behavior",
+    "content": "Offer safe, species-appropriate enrichment such as supervised play, exploration, or food puzzles that match the pet's abilities. Introduce new activities gradually and supervise items that could be chewed or swallowed. If an activity causes fear or frustration, stop and try a gentler option. Ask a veterinarian about sudden or persistent behavior changes."
+  },
+  {
+    "id": "urgent-care",
+    "title": "Urgent veterinary care",
+    "content": "Possible emergencies such as difficulty breathing, collapse, seizures, severe bleeding, choking, suspected poisoning, or swallowing a potentially harmful substance or item need immediate veterinary attention. Contact a veterinarian or local emergency veterinary clinic promptly. Do not wait for an AI response or attempt home treatment based on general guidance."
+  }
+]

@@ -1,0 +1,49 @@
+flowchart LR
+    Owner[("Pet owner")]
+
+    subgraph Input["Input"]
+        UI["Streamlit app"]
+        Tasks["Pet and care-task details"]
+        Question["Pet-care question"]
+    end
+
+    subgraph Process["Process"]
+        Scheduler["Scheduler"]
+        Retriever["Retriever<br/>TF-IDF cosine similarity"]
+        Guide[("Local care guide")]
+        Guardrails["Safety and evidence guardrails"]
+        Model["Gemini generateContent"]
+    end
+
+    subgraph Checks["Human and testing checks"]
+        Human["Owner reviews schedule and answer"]
+        Tester["Automated tester"]
+        Evaluator["Evaluator and logger"]
+    end
+
+    subgraph Output["Output"]
+        Plan["Daily schedule and reasoning"]
+        Answer["Grounded answer and citations"]
+        Warning["Veterinary-care warning"]
+    end
+
+    Owner --> UI
+    UI --> Tasks
+    UI --> Question
+    Tasks --> Scheduler
+    Scheduler --> Plan
+    Question --> Retriever
+    Retriever --> Guide
+    Guide --> Retriever
+    Retriever --> Guardrails
+    Guardrails --> Model
+    Guardrails --> Warning
+    Model --> Answer
+    Plan --> Human
+    Answer --> Human
+    Warning --> Human
+    Plan --> Evaluator
+    Answer --> Evaluator
+    Warning --> Evaluator
+    Scheduler --> Tester
+    Retriever --> Tester

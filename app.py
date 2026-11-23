@@ -1,10 +1,17 @@
 from datetime import time
+import logging
+import os
 from uuid import uuid4
 
 import streamlit as st
 from pawpal_system import Owner, Pet, Task, Scheduler
+from petpal_rag import PetCareRAG, RAGServiceError
 
 st.set_page_config(page_title="PawPal+", page_icon="🐾", layout="centered")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+)
 
 st.title("🐾 PawPal+")
 
@@ -52,6 +59,39 @@ if owner.pets:
     st.write("Your pets:", ", ".join(f"{pet.name} ({pet.species})" for pet in owner.pets))
 else:
     st.info("Add a pet before creating care tasks.")
+
+st.divider()
+st.subheader("Ask PawPal")
+st.caption(
+    "Ask a general pet-care question. Answers are grounded in the local care guide; "
+    "they are educational and do not replace veterinary advice."
+)
+with st.form("care_question_form"):
+    care_question = st.text_input(
+        "Your question",
+        placeholder="How can I make grooming less stressful?",
+        max_chars=500,
+    )
+    ask_question = st.form_submit_button("Get a grounded answer")
+
+if ask_question:
+    try:
+        care_answer = PetCareRAG().answer(care_question)
+        if care_answer.guarded:
+            st.warning(care_answer.text)
+        else:
+            st.write(care_answer.text)
+        with st.expander("Care-guide sources used"):
+            for source in care_answer.sources:
+                st.markdown(f"- **{source.title}** (`{source.source_id}`)")
+    except RAGServiceError as error:
+        st.error(str(error))
+
+if not os.getenv("GEMINI_API_KEY", "").strip():
+    st.caption(
+        "To enable generated answers, configure GEMINI_API_KEY as described in the README. "
+        "Urgent-care guidance and the rest of the app remain available without it."
+    )
 
 st.divider()
 st.subheader("Schedule a Task")
